@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASD Prediction</title>
+</head>
+
+<body>
+    <h1>ASD Prediction</h1>
+
+    
+    <form action='/Check' method="POST" onsubmit="event.preventDefault(); Check();">
+        ASD Score 1: <input type='text' name='A1_Score'><br>
+        ASD Score 2: <input type='text' name='A2_Score'><br>
+        ASD Score 3: <input type='text' name='A3_Score'><br>
+        ASD Score 4: <input type='text' name='A4_Score'><br>
+        ASD Score 5: <input type='text' name='A5_Score'><br>
+        ASD Score 6: <input type='text' name='A6_Score'><br>
+        ASD Score 7: <input type='text' name='A7_Score'><br>
+        ASD Score 8: <input type='text' name='A8_Score'><br>
+        ASD Score 9: <input type='text' name='A9_Score'><br>
+        ASD Score 10: <input type='text' name='A10_Score'><br>
+        Age: <input type='text' name='age'><br>
+        Gender: <input type='text' name='gender'><br>
+        Jaundice: <input type='text' name='jaundice'><br>
+        Austim: <input type='text' name='austim'><br>
+        Country of Residence: <input type='text' name='contry_of_res'><br>
+        Result: <input type='text' name='result'><br>
+
+        Class: <span id="result"></span> <br>
+        <input type='submit' value='Predict'>
+    </form>
+
+    {% if result %}
+    <p>Result: {{ result }}</p>
+    {% endif %}
+
+    <script>
+        function Check() {
+            // Use JavaScript to fetch and display the result without refreshing the page
+            fetch('/Check', {
+                method: 'POST',
+                body: new FormData(document.querySelector('form')),
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').textContent = data.result;
+                console.log(data)
+
+            });
+        }
+    </script>
+</body>
+
+
+</html>
+

@@ -1,59 +1,131 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASD Prediction</title>
+    <title>ASD Analyzer</title>
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 
 <body>
-    <h1>ASD Prediction</h1>
+    <div class="container">
 
-    
-    <form action='/Check' method="POST" onsubmit="event.preventDefault(); Check();">
-        ASD Score 1: <input type='text' name='A1_Score'><br>
-        ASD Score 2: <input type='text' name='A2_Score'><br>
-        ASD Score 3: <input type='text' name='A3_Score'><br>
-        ASD Score 4: <input type='text' name='A4_Score'><br>
-        ASD Score 5: <input type='text' name='A5_Score'><br>
-        ASD Score 6: <input type='text' name='A6_Score'><br>
-        ASD Score 7: <input type='text' name='A7_Score'><br>
-        ASD Score 8: <input type='text' name='A8_Score'><br>
-        ASD Score 9: <input type='text' name='A9_Score'><br>
-        ASD Score 10: <input type='text' name='A10_Score'><br>
-        Age: <input type='text' name='age'><br>
-        Gender: <input type='text' name='gender'><br>
-        Jaundice: <input type='text' name='jaundice'><br>
-        Austim: <input type='text' name='austim'><br>
-        Country of Residence: <input type='text' name='contry_of_res'><br>
-        Result: <input type='text' name='result'><br>
+        <h1>ASD Prediction</h1>
 
-        Class: <span id="result"></span> <br>
-        <input type='submit' value='Predict'>
-    </form>
+        <form action="/predict" method="POST" class="prediction-form">
+            <div class="form-group">
+                <label for="A1_Score">ASD Score 1:</label>
+                <input type='text' name='A1_Score'>
+            </div>
 
-    {% if result %}
-    <p>Result: {{ result }}</p>
-    {% endif %}
+            <div class="form-group">
+                <label for="A2_Score">ASD Score 2:</label>
+                <input type='text' name='A2_Score'>
+            </div>
 
-    <script>
-        function Check() {
-            // Use JavaScript to fetch and display the result without refreshing the page
-            fetch('/Check', {
-                method: 'POST',
-                body: new FormData(document.querySelector('form')),
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('result').textContent = data.result;
-                console.log(data)
+            <div class="form-group">
+                <label for="A3_Score">ASD Score 3:</label>
+                <input type='text' name='A3_Score'>
+            </div>
 
-            });
-        }
-    </script>
+            <div class="form-group">
+                <label for="A4_Score">ASD Score 4:</label>
+                <input type='text' name='A4_Score'>
+            </div>
+
+            <div class="form-group">
+                <label for="A5_Score">ASD Score 5:</label>
+                <input type='text' name='A5_Score'>
+            </div>
+
+            <div class="form-group">
+                <label for="A6_Score">ASD Score 6:</label>
+                <input type='text' name='A6_Score'>
+            </div>
+
+            <div class="form-group">
+                <label for="A7_Score">ASD Score 7:</label>
+                <input type='text' name='A7_Score'>
+            </div>
+
+            <div class="form-group">
+                <label for="A8_Score">ASD Score 8:</label>
+                <input type='text' name='A8_Score'>
+            </div>
+
+            <div class="form-group">
+                <label for="A9_Score">ASD Score 9:</label>
+                <input type='text' name='A9_Score'>
+            </div>
+
+            <div class="form-group">
+                <label for="A10_Score">ASD Score 10:</label>
+                <input type='text' name='A10_Score'>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type='text' name='age'>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <input type='text' name='gender'>
+            </div>
+
+            <div class="form-group">
+                <label for="ethnicity">Ethnicity:</label>
+                <input type='text' name='ethnicity'>
+            </div>
+
+            <div class="form-group">
+                <label for="jaundice">Jaundice:</label>
+                <input type='text' name='jaundice'>
+            </div>
+
+            <div class="form-group">
+                <label for="austim">Austim:</label>
+                <input type='text' name='austim'>
+            </div>
+
+            <div class="form-group">
+                <label for="contry_of_res">Country of Residence:</label>
+                <input type='text' name='contry_of_res'>
+            </div>
+
+            <div class="form-group">
+                <label for="used_app_before">Used App Before:</label>
+                <input type='text' name='used_app_before'>
+            </div>
+
+            <div class="form-group">
+                <label for="result">Result:</label>
+                <input type='text' name='result'>
+
+            </div>
+
+            <div class="form-group">
+                <label for="age_desc">Age Desc:</label>
+                <input type='text' name='age_desc'>
+            </div>
+
+            <div class="form-group">
+                <label for="relation">Relation:</label>
+                <input type='text' name='relation'>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result %}
+        <div class="result-container">
+            <p class="result-message">Result:</p>
+            <p class="result">{{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
 </body>
-
-
 </html>
 
